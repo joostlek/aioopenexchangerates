@@ -27,6 +27,8 @@ version = "0.1.0"
 "Changelog" = "https://github.com/MartinHjelmare/aioopenexchangerates/blob/main/CHANGELOG.md"
 
 [tool.poetry.dependencies]
+aiohttp = "^3.8"
+pydantic = "^1.9"
 python = "^3.9"
 
 # Documentation Dependencies
@@ -42,6 +44,7 @@ docs = [
 ]
 
 [tool.poetry.dev-dependencies]
+aioresponses = "^0.7.3"
 bandit = "^1.7"
 black = "^22.1"
 flake8 = "^4.0"
@@ -52,8 +55,10 @@ pre-commit = "^2.20.0"
 pylint = "^2.14.5"
 pylint-strict-informational = "^0.1"
 pytest = "^7.0"
+pytest-aiohttp = "^1.0.4"
 pytest-cov = "^3.0"
 pyupgrade = "^2.29"
+yarl = "^1.7.2"
 
 [tool.coverage.run]
 branch = true
@@ -148,6 +153,7 @@ runtime-typing = false
 
 [tool.pytest.ini_options]
 addopts = "-v -Wdefault --cov=aioopenexchangerates --cov-report=term-missing:skip-covered"
+asyncio_mode = "auto"
 pythonpath = ["src"]
 
 [tool.semantic_release]
