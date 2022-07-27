@@ -1,11 +1,13 @@
 """Provide a client for the Open Exchange Rates API."""
 from __future__ import annotations
 
+from http import HTTPStatus
 from types import TracebackType
 from typing import Any
 
-from aiohttp import ClientResponse, ClientSession
+from aiohttp import ClientError, ClientResponse, ClientResponseError, ClientSession
 
+from .exceptions import OpenExchangeRatesAuthError, OpenExchangeRatesClientError
 from .model import Latest
 
 BASE_API_ENDPOINT = "https://openexchangerates.org/api/"
@@ -22,7 +24,14 @@ class Client:
     async def request(self, endpoint: str, **kwargs: Any) -> ClientResponse:
         """Make a request."""
         url = f"{BASE_API_ENDPOINT}{endpoint}"
-        return await self.session.get(url, raise_for_status=True, **kwargs)
+        try:
+            return await self.session.get(url, raise_for_status=True, **kwargs)
+        except ClientResponseError as err:
+            if err.status == HTTPStatus.UNAUTHORIZED:
+                raise OpenExchangeRatesAuthError("Invalid API key.") from err
+            raise OpenExchangeRatesClientError() from err
+        except ClientError as err:
+            raise OpenExchangeRatesClientError() from err
 
     async def get_latest(
         self, base: str = "USD", symbols: list[str] | None = None

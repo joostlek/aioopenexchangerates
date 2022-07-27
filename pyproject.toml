@@ -132,6 +132,9 @@ persistent = false
 py-version = "3.9"
 score = false
 
+[tool.pylint.DESIGN]
+max-args = 7
+
 [tool.pylint.FORMAT]
 expected-line-ending-format = "LF"
 
