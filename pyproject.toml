@@ -87,6 +87,9 @@ exclude = [
 ]
 mypy_path = "src/"
 no_implicit_optional = true
+plugins = [
+  "pydantic.mypy",
+]
 show_error_codes = true
 warn_incomplete_stub = true
 warn_redundant_casts = true
