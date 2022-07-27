@@ -159,5 +159,6 @@ pythonpath = ["src"]
 [tool.semantic_release]
 branch = "main"
 build_command = "pip install poetry && poetry build"
+major_on_zero = false
 version_toml = "pyproject.toml:tool.poetry.version"
 version_variable = "src/aioopenexchangerates/__init__.py:__version__"
