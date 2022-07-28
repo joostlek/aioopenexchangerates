@@ -2,9 +2,9 @@
 from collections.abc import Callable
 from unittest.mock import patch
 
-import pytest
 from aiohttp import ClientConnectionError, ClientPayloadError, ClientSession
 from aioresponses import aioresponses
+import pytest
 
 from aioopenexchangerates.client import Client
 from aioopenexchangerates.exceptions import (

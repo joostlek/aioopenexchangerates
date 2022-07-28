@@ -1,8 +1,8 @@
 """Test endpoint latest.json."""
 from collections.abc import Callable
 
-import pytest
 from aioresponses import aioresponses
+import pytest
 
 from aioopenexchangerates.client import Client
 

@@ -2,9 +2,9 @@
 from collections.abc import AsyncGenerator, Callable, Generator
 from typing import Any
 
-import pytest
 from aiohttp import ClientSession
 from aioresponses import aioresponses
+import pytest
 from yarl import URL
 
 from aioopenexchangerates.client import BASE_API_ENDPOINT, Client
