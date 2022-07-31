@@ -10,15 +10,18 @@ from aioopenexchangerates.client import Client
 from aioopenexchangerates.exceptions import (
     OpenExchangeRatesAuthError,
     OpenExchangeRatesClientError,
+    OpenExchangeRatesRateLimitError,
 )
 
 
 @pytest.mark.parametrize(
     "status, error, message",
     [
-        (401, OpenExchangeRatesAuthError, "Invalid API key."),
-        (400, OpenExchangeRatesClientError, ""),
-        (500, OpenExchangeRatesClientError, ""),
+        (401, OpenExchangeRatesAuthError, "Unauthorized"),
+        (403, OpenExchangeRatesAuthError, "Forbidden"),
+        (429, OpenExchangeRatesRateLimitError, "Too Many Requests"),
+        (400, OpenExchangeRatesClientError, "Bad Request"),
+        (500, OpenExchangeRatesClientError, "Internal Server Error"),
     ],
 )
 async def test_response_error(
@@ -44,8 +47,16 @@ async def test_response_error(
 @pytest.mark.parametrize(
     "aiohttp_error, error, message",
     [
-        (ClientConnectionError("Boom"), OpenExchangeRatesClientError, ""),
-        (ClientPayloadError("Bad payload"), OpenExchangeRatesClientError, ""),
+        (
+            ClientConnectionError("Boom"),
+            OpenExchangeRatesClientError,
+            "Unknown error: Boom",
+        ),
+        (
+            ClientPayloadError("Bad payload"),
+            OpenExchangeRatesClientError,
+            "Unknown error: Bad payload",
+        ),
     ],
 )
 async def test_client_error(

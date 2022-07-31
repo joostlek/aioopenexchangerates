@@ -11,3 +11,7 @@ class OpenExchangeRatesClientError(OpenExchangeRatesError):
 
 class OpenExchangeRatesAuthError(OpenExchangeRatesClientError):
     """Represent an authentication error."""
+
+
+class OpenExchangeRatesRateLimitError(OpenExchangeRatesClientError):
+    """Represent a rate limit error."""

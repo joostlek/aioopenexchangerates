@@ -7,7 +7,11 @@ from typing import Any
 
 from aiohttp import ClientError, ClientResponse, ClientResponseError, ClientSession
 
-from .exceptions import OpenExchangeRatesAuthError, OpenExchangeRatesClientError
+from .exceptions import (
+    OpenExchangeRatesAuthError,
+    OpenExchangeRatesClientError,
+    OpenExchangeRatesRateLimitError,
+)
 from .model import Latest
 
 BASE_API_ENDPOINT = "https://openexchangerates.org/api/"
@@ -28,10 +32,14 @@ class Client:
             return await self.session.get(url, raise_for_status=True, **kwargs)
         except ClientResponseError as err:
             if err.status == HTTPStatus.UNAUTHORIZED:
-                raise OpenExchangeRatesAuthError("Invalid API key.") from err
-            raise OpenExchangeRatesClientError() from err
+                raise OpenExchangeRatesAuthError(err.message) from err
+            if err.status == HTTPStatus.FORBIDDEN:
+                raise OpenExchangeRatesAuthError(err.message) from err
+            if err.status == HTTPStatus.TOO_MANY_REQUESTS:
+                raise OpenExchangeRatesRateLimitError(err.message) from err
+            raise OpenExchangeRatesClientError(err.message) from err
         except ClientError as err:
-            raise OpenExchangeRatesClientError() from err
+            raise OpenExchangeRatesClientError(f"Unknown error: {err}") from err
 
     async def get_latest(
         self, base: str = "USD", symbols: list[str] | None = None
