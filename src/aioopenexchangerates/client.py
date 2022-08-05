@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from http import HTTPStatus
 from types import TracebackType
-from typing import Any
+from typing import Any, cast
 
 from aiohttp import ClientError, ClientResponse, ClientResponseError, ClientSession
 
@@ -40,6 +40,17 @@ class Client:
             raise OpenExchangeRatesClientError(err.message) from err
         except ClientError as err:
             raise OpenExchangeRatesClientError(f"Unknown error: {err}") from err
+
+    async def get_currencies(
+        self, show_alternative: bool = False, show_inactive: bool = False
+    ) -> dict[str, str]:
+        """Get the supported currencies."""
+        params = {
+            "show_alternative": int(show_alternative),
+            "show_inactive": int(show_inactive),
+        }
+        response = await self.request("currencies.json", params=params)
+        return cast(dict[str, str], (await response.json()))
 
     async def get_latest(
         self, base: str = "USD", symbols: list[str] | None = None
