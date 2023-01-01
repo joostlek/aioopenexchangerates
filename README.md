@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/MartinHjelmare/aioopenexchangerates/actions?query=workflow%3ACI">
-    <img src="https://img.shields.io/github/workflow/status/MartinHjelmare/aioopenexchangerates/CI/main?label=CI&logo=github&style=flat-square" alt="CI Status" >
+    <img src="https://img.shields.io/github/actions/workflow/status/MartinHjelmare/aioopenexchangerates/ci.yml?branch=main&label=CI&logo=github&style=flat-square" alt="CI Status" >
   </a>
   <a href="https://aioopenexchangerates.readthedocs.io">
     <img src="https://img.shields.io/readthedocs/aioopenexchangerates.svg?logo=read-the-docs&logoColor=fff&style=flat-square" alt="Documentation Status">
