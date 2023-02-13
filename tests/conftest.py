@@ -30,7 +30,7 @@ async def client_fixture(session: ClientSession) -> AsyncGenerator[Client, None]
 @pytest.fixture
 def mock_response() -> Generator[aioresponses, None, None]:
     """Provide a mocker for aiohttp responses."""
-    with aioresponses() as mock_response_:  # type: ignore[no-untyped-call]
+    with aioresponses() as mock_response_:
         yield mock_response_
 
 

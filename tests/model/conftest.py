@@ -10,7 +10,7 @@ def latest_latest(latest_latest_usd: str, request: pytest.FixtureRequest) -> str
     """Return a response for latest.json with USD base or request.param base."""
     body_string = latest_latest_usd
     body = json.loads(body_string)
-    body["base"] = request.param or "USD"  # type: ignore[attr-defined]
+    body["base"] = request.param or "USD"
     return json.dumps(body)
 
 
