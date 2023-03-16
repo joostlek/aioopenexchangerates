@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.1 (2023-03-16)
+### Fix
+* **deps:** Update dependency pydantic to v1.10.6 ([`c892ed2`](https://github.com/MartinHjelmare/aioopenexchangerates/commit/c892ed29cad2ec96ed99e79ea60d58f7435bda2e))
+
 ## v0.4.0 (2022-08-05)
 ### Feature
 * Support currencies endpoint ([#25](https://github.com/MartinHjelmare/aioopenexchangerates/issues/25)) ([`223af5c`](https://github.com/MartinHjelmare/aioopenexchangerates/commit/223af5c7f32aa9426b726d2c75570b86af462dad))
