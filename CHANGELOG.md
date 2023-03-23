@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.2 (2023-03-23)
+### Fix
+* **deps:** Update dependency pydantic to v1.10.7 ([`b5990ed`](https://github.com/MartinHjelmare/aioopenexchangerates/commit/b5990ed556057d3012b8cec3c53dabdc3aebdc8d))
+
+### Documentation
+* Try to fix build attempt 1 ([#58](https://github.com/MartinHjelmare/aioopenexchangerates/issues/58)) ([`f364917`](https://github.com/MartinHjelmare/aioopenexchangerates/commit/f364917d01ff5a717fb44c7f2d44370e5ed5940d))
+
 ## v0.4.1 (2023-03-16)
 ### Fix
 * **deps:** Update dependency pydantic to v1.10.6 ([`c892ed2`](https://github.com/MartinHjelmare/aioopenexchangerates/commit/c892ed29cad2ec96ed99e79ea60d58f7435bda2e))
