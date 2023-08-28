@@ -28,7 +28,7 @@ version = "0.4.2"
 
 [tool.poetry.dependencies]
 aiohttp = "^3.8.4"
-pydantic = "^1.9"
+pydantic = ">=1.10.8"
 python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
